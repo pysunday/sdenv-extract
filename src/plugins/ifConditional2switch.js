@@ -64,10 +64,10 @@ function getIfNode(node, ans=[], opt = {}, codemap = {}) {
 
 function handleCode(cases, type, config, brower = '') {
   const codes = [];
-  if (!brower) {
-    config['chrome'] && codes.push(...handleCode(cases, type, config, 'chrome'));
-    config['jsdom'] && codes.push(...handleCode(cases, type, config, 'jsdom'));
-    // config['main'] && codes.push(...handleCode(cases, type, config, 'main'));
+  if (!brower && config) {
+    for (let key of Object.keys(config)) {
+      codes.push(...handleCode(cases, type, config, key));
+    }
   }
   const cfgKey = type;
   const cfg = brower ? config[brower]?.[cfgKey] : config[cfgKey];
@@ -203,7 +203,7 @@ module.exports = (ast, argv) => {
     IfStatement(path) {
       const [key, cases, codemap] = getIfNode(path.node) || []
       if (!key || cases.length <= 6) return;
-      codes.push(...handleCode(cases, key, argv.config));
+      codes.push(...handleCode(cases, key, argv.config || {}));
       const newNode = t.switchStatement(
         t.identifier(key),
         cases.map((mycase, idx) => {

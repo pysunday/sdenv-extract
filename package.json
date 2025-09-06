@@ -35,15 +35,15 @@
   "author": "pysunday",
   "license": "BSD 3-Clause",
   "dependencies": {
+    "@babel/generator": "^7.28.3",
+    "@babel/parser": "^7.28.4",
+    "@babel/traverse": "^7.28.4",
+    "@babel/types": "^7.28.4",
     "cheerio": "^1.0.0-rc.12",
-    "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1",
     "module-alias": "^2.2.3",
-    "putout": "^35.7.6",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
-    "sdenv-jsdom": "^1.0.0",
+    "putout": "^40.7.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
