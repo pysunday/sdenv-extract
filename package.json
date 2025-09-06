@@ -1,6 +1,6 @@
 {
   "name": "sdenv-extract",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "动态代码提取与格式化",
   "main": "main.js",
   "bin": {
