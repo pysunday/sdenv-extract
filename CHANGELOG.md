@@ -1,5 +1,12 @@
 
 
+## [0.1.4](https://github.com/pysunday/rs-reverse/compare/0.1.3...0.1.4) (2025-09-09)
+
+
+### Bug Fixes
+
+* module-alias error ([b33eefc](https://github.com/pysunday/rs-reverse/commit/b33eefc5267cfdd935048056911f293a0e508d28))
+
 ## [0.1.3](https://github.com/pysunday/rs-reverse/compare/0.1.2...0.1.3) (2025-09-09)
 
 
