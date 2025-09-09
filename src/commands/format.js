@@ -27,9 +27,10 @@ module.exports = (argv) => {
   codes.push(...conditional2if(ast, argv));
   codes.push(...common(ast, argv));
   const result = generate(ast, { minified: false, concise: false, compact: false })
-  checkAndCreate(argv.output);
-  fs.writeFileSync(argv.output, result.code);
-  console.info(`写入文件成功：${argv.output}`);
+  const formatPath = path.resolve(argv.output, 'format.js');
+  checkAndCreate(formatPath);
+  fs.writeFileSync(formatPath, result.code);
+  console.info(`写入文件成功：${formatPath}`);
   codes.forEach(({ path: p, content }) => {
     console.info(`写入文件成功：${p}`);
     checkAndCreate(p);

@@ -46,9 +46,9 @@ module.exports = yargs
       alias: 'output',
       describe: '输出文件',
       type: 'string',
-      default: 'format.js',
+      default: './output',
       coerce: (path) => {
-        return paths.outputResolve(path);
+        return paths.resolveCwd(path);
       }
   })
   .option('c', {

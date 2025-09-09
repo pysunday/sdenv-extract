@@ -62,11 +62,11 @@ function getIfNode(node, ans=[], opt = {}, codemap = {}) {
   return [opt.name, ans.filter(Boolean), codemap]
 }
 
-function handleCode(cases, type, config, brower = '') {
+function handleCode(cases, type, config, brower = '', outputResolve) {
   const codes = [];
   if (!brower && config) {
     for (let key of Object.keys(config)) {
-      codes.push(...handleCode(cases, type, config, key));
+      codes.push(...handleCode(cases, type, config, key, outputResolve));
     }
   }
   const cfgKey = type;
@@ -111,14 +111,14 @@ function handleCode(cases, type, config, brower = '') {
       content.unshift(`// 上级循环: ${item.pre.current} / ${item.pre.curloop}`);
     }
     codes.push({
-      path: paths.outputResolve(brower, `run${type}_${item.lens}${code}_${idx}_${item.current}.js`),
+      path: outputResolve(`run${type}_${item.lens}${code}_${idx}_${item.current}.js`),
       content: content.join('\n')
     })
   })
   return codes;
 }
 
-function getVarible(scope, key) {
+function getVarible(scope, key, outputResolve) {
   const varibles = {};
   do {
     for (const name of Object.keys(scope.bindings)) {
@@ -134,7 +134,7 @@ function getVarible(scope, key) {
   } while ((scope = scope.parent));
   return {
     scope,
-    path: paths.outputResolve(`varibles${key}`),
+    path: outputResolve(`varibles${key}`),
     content: [
       `【${key}】:`,
       ...Object.entries(varibles).map(([name, arr]) => `    【${name}】: ${arr.join(', ')}`),
@@ -198,12 +198,13 @@ function codemapAddCommon(path, scope, codemap) {
 }
 
 module.exports = (ast, argv) => {
-  const codes = []
+  const codes = [];
+  const outputResolve = (name) => path.resolve(argv.output, name);
   traverse(ast, {
     IfStatement(path) {
       const [key, cases, codemap] = getIfNode(path.node) || []
       if (!key || cases.length <= 6) return;
-      codes.push(...handleCode(cases, key, argv.config || {}));
+      codes.push(...handleCode(cases, key, argv.config || {}, '', outputResolve));
       const newNode = t.switchStatement(
         t.identifier(key),
         cases.map((mycase, idx) => {
@@ -218,9 +219,9 @@ module.exports = (ast, argv) => {
         })
       )
       const pushNode = parser.parseExpression(`addLoop(下标, ${key})`)
-      const { scope, ...codeNode } = getVarible(path.scope, key);
+      const { scope, ...codeNode } = getVarible(path.scope, key, outputResolve);
       codes.push({ // 该处解析原始代码，应该在所有代码修改之前执行
-        path: paths.outputResolve(`switch_codemap_${key}.json`),
+        path: outputResolve(`switch_codemap_${key}.json`),
         content: JSON.stringify(codemapAddCommon(path, scope, codemap)),
       })
       codes.push(codeNode);
