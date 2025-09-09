@@ -1,5 +1,12 @@
 
 
+## [0.1.3](https://github.com/pysunday/rs-reverse/compare/0.1.2...0.1.3) (2025-09-09)
+
+
+### Bug Fixes
+
+* update output path ([cfa9872](https://github.com/pysunday/rs-reverse/commit/cfa98726596b19570c03790f3e1fa2084a1f5133))
+
 ## [0.1.2](https://github.com/pysunday/rs-reverse/compare/0.1.0...0.1.2) (2025-09-06)
 
 
