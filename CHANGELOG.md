@@ -1,5 +1,12 @@
 
 
+## [0.1.5](https://github.com/pysunday/rs-reverse/compare/0.1.4...0.1.5) (2025-09-09)
+
+
+### Bug Fixes
+
+* 输入文件路径相对于执行目录 ([e795a85](https://github.com/pysunday/rs-reverse/commit/e795a851348eba94adb65455bdbe4d79a37eca3f))
+
 ## [0.1.4](https://github.com/pysunday/rs-reverse/compare/0.1.3...0.1.4) (2025-09-09)
 
 
