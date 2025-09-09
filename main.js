@@ -37,7 +37,8 @@ module.exports = yargs
       alias: 'input',
       describe: '输入文件',
       type: 'string',
-      coerce: (input) => {
+      coerce: (s) => {
+        const input = paths.resolveCwd(s)
         if (!fs.existsSync(input)) throw new Error('输入文件不存在');
         return fs.readFileSync(paths.resolve(input), 'utf8');
       }
