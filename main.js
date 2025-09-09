@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-require('module-alias/register');
+require('module-alias')(__dirname + '/package.json');
 const yargs = require('yargs');
 const fs = require('fs');
 const utils = require('@utils/')
