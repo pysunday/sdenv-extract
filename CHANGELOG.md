@@ -1,5 +1,12 @@
 
 
+## [0.1.7](https://github.com/pysunday/rs-reverse/compare/0.1.6...0.1.7) (2025-09-19)
+
+
+### Bug Fixes
+
+* 运行时文件加浏览器名称 ([a980119](https://github.com/pysunday/rs-reverse/commit/a9801192c741331506968b2d44ed52a0fe1a4be6))
+
 ## [0.1.6](https://github.com/pysunday/rs-reverse/compare/0.1.5...0.1.6) (2025-09-19)
 
 
