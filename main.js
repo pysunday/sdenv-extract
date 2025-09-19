@@ -56,7 +56,8 @@ module.exports = yargs
       alias: 'config',
       describe: 'json配置文件',
       type: 'string',
-      coerce: (input) => {
+      coerce: (s) => {
+        const input = paths.resolveCwd(s);
         if (!fs.existsSync(input)) throw new Error('配置文件不存在');
         return JSON.parse(fs.readFileSync(paths.resolve(input), 'utf8'));
       }
