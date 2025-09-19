@@ -111,7 +111,7 @@ function handleCode(cases, type, config, brower = '', outputResolve) {
       content.unshift(`// 上级循环: ${item.pre.current} / ${item.pre.curloop}`);
     }
     codes.push({
-      path: outputResolve(`run${type}_${item.lens}${code}_${idx}_${item.current}.js`),
+      path: outputResolve(brower, `run${type}_${item.lens}${code}_${idx}_${item.current}.js`),
       content: content.join('\n')
     })
   })
@@ -199,7 +199,7 @@ function codemapAddCommon(path, scope, codemap) {
 
 module.exports = (ast, argv) => {
   const codes = [];
-  const outputResolve = (name) => path.resolve(argv.output, name);
+  const outputResolve = (...names) => path.resolve(argv.output, ...names);
   traverse(ast, {
     IfStatement(path) {
       const [key, cases, codemap] = getIfNode(path.node) || []
