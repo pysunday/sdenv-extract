@@ -1,5 +1,12 @@
 
 
+## [0.1.6](https://github.com/pysunday/rs-reverse/compare/0.1.5...0.1.6) (2025-09-19)
+
+
+### Bug Fixes
+
+* config文件路径问题修复 ([7d7678c](https://github.com/pysunday/rs-reverse/commit/7d7678c487a6a9c0df5ca9c3c2a8941d78c31e19))
+
 ## [0.1.5](https://github.com/pysunday/rs-reverse/compare/0.1.4...0.1.5) (2025-09-09)
 
 
